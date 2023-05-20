@@ -2,7 +2,7 @@ import React, {useState,  useEffect} from 'react'
 import './App.css'
 import shopIcon from "./assets/shopIcon.png"
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove, } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://playground-2dcb2-default-rtdb.europe-west1.firebasedatabase.app"
@@ -17,7 +17,7 @@ export default function App() {
 const [items, setItems] = useState()
 const [list, setList] = useState([])
 
-  useEffect(()=> {
+useEffect(()=> {
 
 onValue(shoppingListInDB, function(snapshot) {
  if (snapshot.exists()){
@@ -54,15 +54,11 @@ setItems(e.target.value)
 
 function deleteItem(listItemID){
 
+// setItems(prevItems => prevItems.filter(items => items[0] != listItemID))
+
 console.log(listItemID)
 let itemLocationDB = ref(database, `shopping-list/${listItemID}`)
 remove(itemLocationDB)
-
-
-//  if(currentItemID === 2){
-//         let itemInList = ref(db, `Shopping-List"/${list.target.id}`)
-//         remove(itemInList)
-//     }
 
 }
 
